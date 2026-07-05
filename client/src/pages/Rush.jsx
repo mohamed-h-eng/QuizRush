@@ -67,7 +67,7 @@ const CreateQuiz = () => {
     // }));
 
     // Save quizzes to your backend
-    await api.post("/api/quizzes/rush", data);
+    await api.post("/quizzes/rush", data);
 
     navigate("/my-quizzes");
   } catch (err) {
