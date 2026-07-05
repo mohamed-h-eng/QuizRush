@@ -1,0 +1,19 @@
+{
+  "name": "quizzy",
+  "version": "1.0.0",
+  "description": "A full MERN stack quiz app: create/edit/delete quizzes, browse & search by topic, share quizzes via public links, and take quizzes **one question at a time**.",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "install-all": "npm install && npm install --prefix server && npm install --prefix client",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client"
+  },
+  "dependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
