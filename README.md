@@ -1,4 +1,4 @@
-# QuizHub — MERN Quiz App
+# QuizRush — MERN Quiz App
 
 A full MERN stack quiz app: create/edit/delete quizzes, browse & search by topic,
 share quizzes via public links, and take quizzes **one question at a time**.

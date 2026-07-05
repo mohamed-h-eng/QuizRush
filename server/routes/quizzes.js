@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   createQuiz,
+  rushQuiz,
   getQuizzes,
   getQuizById,
   getQuizBySlug,
@@ -17,6 +18,9 @@ router.get("/share/:slug", getQuizBySlug);
 router.route("/")
   .get(optionalAuth, getQuizzes)
   .post(protect, createQuiz);
+
+router.route("/rush")
+  .post(protect, rushQuiz);
 
 router.route("/:id")
   .get(protect, getQuizById)

@@ -30,6 +30,50 @@ const createQuiz = async (req, res, next) => {
   }
 };
 
+const rushQuiz = async (req, res, next) => {
+  try {
+    let quizzes = req.body;
+
+    // Normalize payload
+    if (!Array.isArray(quizzes)) {
+      quizzes = [quizzes];
+    }
+
+    // Handle n8n's nested array: [[{...}, {...}]]
+    if (Array.isArray(quizzes[0])) {
+      quizzes = quizzes.flat();
+    }
+
+    const docs = quizzes.map((quiz) => ({
+      title: quiz.title,
+      topic: quiz.topic,
+      description: quiz.description || "",
+      questions: quiz.questions,
+      isPublic: quiz.isPublic ?? true,
+      createdBy: req.user._id,
+      slug:
+        quiz.title
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "")
+          .slice(0, 40) +
+        "-" +
+        nanoid(6),
+    }));
+
+    const created = await Quiz.insertMany(docs);
+
+    res.status(201).json({
+      success: true,
+      count: created.length,
+      quizzes: created,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // GET /api/quizzes?topic=xyz&mine=true
 const getQuizzes = async (req, res, next) => {
   try {
@@ -169,6 +213,7 @@ const submitAttempt = async (req, res, next) => {
 
 module.exports = {
   createQuiz,
+  rushQuiz,
   getQuizzes,
   getQuizById,
   getQuizBySlug,

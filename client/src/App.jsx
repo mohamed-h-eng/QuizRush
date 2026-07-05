@@ -5,6 +5,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import MyQuizzes from "./pages/MyQuizzes.jsx";
 import CreateQuiz from "./pages/CreateQuiz.jsx";
+import Rush from "./pages/Rush.jsx";
 import EditQuiz from "./pages/EditQuiz.jsx";
 import SharedQuiz from "./pages/SharedQuiz.jsx";
 
@@ -26,7 +27,7 @@ function App() {
     <div className="min-h-screen flex flex-col">
       <nav className="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between">
         <Link to="/" className="text-lg font-bold text-brand-600">
-          QuizHub
+          QuizRush
         </Link>
         <div className="flex items-center gap-4 text-sm">
           <Link to="/" className="hover:text-brand-600">Browse</Link>
@@ -34,6 +35,7 @@ function App() {
             <>
               <Link to="/my-quizzes" className="hover:text-brand-600">My Quizzes</Link>
               <Link to="/create" className="hover:text-brand-600">Create</Link>
+              <Link to="/rush" className="bg-brand-500 text-white px-4 py-2 rounded-md hover:bg-brand-600">RUSH</Link>
               <span className="text-slate-400">|</span>
               <span className="text-slate-500">Hi, {user.name}</span>
               <button
@@ -76,6 +78,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <CreateQuiz />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/rush"
+            element={
+              <ProtectedRoute>
+                <Rush />
               </ProtectedRoute>
             }
           />
